@@ -1,3 +1,8 @@
+// links importantes:
+// http://blog.marcinchwedczuk.pl/ray-tracing-torus
+// https://en.wikipedia.org/wiki/Quartic_equation#Solving_a_quartic_equation
+
+
 #ifndef TORUS_H
 #define TORUS_H
 

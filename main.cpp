@@ -9,8 +9,10 @@
 #include "camera.h"
 #include "material.h"
 
+
 #include <iostream>
 #include <fstream>  // para ler e gravar em arquivos.
+#include <iomanip>
 
 // Função auxiliar para criar um fundo de imagem colorido
 // pega a direcao do raio e calcula uma interpolacao entra banco e azul
@@ -74,7 +76,7 @@ hittable_list random_scene() {
     shared_ptr<material> sphere_material;
     auto albedo = color::random() * color::random();
     sphere_material = make_shared<lambertian>(albedo);
-    world.add(make_shared<torus>(center,0.4, 0.2, sphere_material));
+    world.add(make_shared<torus>(center,0.8, 0.3, sphere_material));
 
 
     // auto material1 = make_shared<dielectric>(1.5);
@@ -104,7 +106,7 @@ int main() {
     // Camera
     // camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 90, aspect_ratio);
     // camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 20, aspect_ratio); // mudando o fiel of view
-    point3 lookfrom(13,2,3);
+    point3 lookfrom(-2,2,1);
     point3 lookat(0,0,0);
     vec3 vup(0,1,0);
     auto dist_to_focus = 10.0;

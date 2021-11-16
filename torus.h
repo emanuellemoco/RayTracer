@@ -70,10 +70,20 @@ bool torus::hit(const ray &r, double t_min, double t_max, hit_record &rec) const
 
 			if (solutions[i].real() > t_min && solutions[i].real() < t_max)
 			{
+				//https://www.wolframalpha.com/input/?i=f%28x%2Cy%2Cz%29%3D+%282-+sqrt%28x%C2%B2+%2B+y%C2%B2%29%29%C2%B2+%2B+z%C2%B2+-+1
+				double x = ox + dx * solutions[i].real();
+				double y = oy + dy * solutions[i].real();
+
+				double delx = x * (2 - (4/ (sqrt(pow(x, 2) + pow(y, 2))))); // delz delx
+				double dely = y * (2 - (4/ (sqrt(pow(x, 2) + pow(y, 2)))));
+				// double delz = 2 * z ;
+				vec3 normal = vec3(delx, dely, -1);
+
 				// std::cerr  << "Entrei no iff" << std::flush;
 				rec.t = solutions[i].real();
 				rec.p = r.at(rec.t);
-				rec.set_face_normal(r, (rec.p - center) / outerRadius);
+				rec.set_face_normal(r, normal);
+
 				rec.mat_ptr = mat_ptr;
 				delete[] solutions;
 

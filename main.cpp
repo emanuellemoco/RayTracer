@@ -42,7 +42,7 @@ hittable_list random_scene()
     hittable_list world;
 
     auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<lambertian>(color(0.7, 0.1, 0.7));
+    //auto material_center = make_shared<lambertian>(color(0.7, 0.1, 0.7));
     auto material_left = make_shared<metal>(color(0.0, 0.8, 0.8), 0.3);
     auto material_right = make_shared<metal>(color(0.8, 0.6, 0.2), 1.0);
 
@@ -50,13 +50,13 @@ hittable_list random_scene()
     shared_ptr<material> sphere_material;
     auto albedo = color::random() * color::random();
     sphere_material = make_shared<lambertian>(albedo);
-    world.add(make_shared<torus>(center, 1.2, 0.2, material_center));
+    
+    world.add(make_shared<torus>(center, 1.2, 0.2, material_left));
 
 
 
-    auto material_center_pink = make_shared<lambertian>(color(1.0, 0.8, 0.9));
-
-    world.add(make_shared<torus>(center, 0.4, 0.1, material_center_pink));
+    // auto material_center_pink = make_shared<lambertian>(color(1.0, 0.8, 0.9));
+    // world.add(make_shared<torus>(center, 0.4, 0.1, material_center_pink));
 
 
 
@@ -70,7 +70,7 @@ int main()
     const auto aspect_ratio = 3.0 / 2.0;
     const int image_width = 1200;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 10;
+    const int samples_per_pixel = 2;
     const int max_depth = 50;
 
     // World
